@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Balaji Public School — CBSE, New Delhi</title>
+<meta name="description" content="Balaji Public School — a CBSE-affiliated, co-educational school offering classes through senior secondary (10+2). Academics, sport, culture and character.">
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+Devanagari:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#04142B;
+    --navy-900:#07366C;
+    --navy-850:#0A3B75;
+    --navy-800:#0E4483;
+    --gold-500:#F5C115;
+    --gold-600:#D9A400;
+    --gold-100:#FBEBB5;
+    --cream-50:#FBF7EC;
+    --cream-100:#F3EAD4;
+    --cream-200:#ECE0C4;
+    --ink-900:#1C1810;
+    --ink-700:#3C362B;
+    --ink-500:#6B6455;
+    --white:#FFFFFF;
+    --shadow-soft: 0 24px 60px -24px rgba(4,20,43,.35);
+    --shadow-hover: 0 30px 70px -20px rgba(4,20,43,.45);
+    --radius-lg: 26px;
+    --radius-md: 16px;
+    --ease: cubic-bezier(.16,.84,.44,1);
+    --nav-h: 84px;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    font-family:'Manrope', sans-serif;
+    color: var(--ink-900);
+    background: var(--cream-50);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.7;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:600; margin:0; line-height:1.08; letter-spacing:-.01em; }
+  p{ margin:0; }
+  ul{ list-style:none; margin:0; padding:0; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  section[id]{ scroll-margin-top: var(--nav-h); }
+
+  .skip-link{
+    position:absolute; left:-9999px; top:0; background:var(--gold-500); color:var(--navy-950);
+    padding:12px 20px; z-index:1000; font-weight:700; border-radius:0 0 10px 0;
+  }
+  .skip-link:focus{ left:0; }
+
+  :focus-visible{ outline:3px solid var(--gold-500); outline-offset:3px; }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:.78rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase;
+    color: var(--gold-600);
+  }
+  .eyebrow::before{
+    content:''; width:26px; height:2px; background: var(--gold-600); display:inline-block; border-radius:2px;
+  }
+  .on-dark .eyebrow{ color: var(--gold-500); }
+  .on-dark .eyebrow::before{ background: var(--gold-500); }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    padding: 18px clamp(20px,4vw,56px);
+    transition: background .4s var(--ease), box-shadow .4s var(--ease), padding .3s var(--ease);
+  }
+  .nav.scrolled{
+    background: rgba(4,20,43,.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 34px -18px rgba(0,0,0,.55);
+    padding-block:12px;
+  }
+  .nav-inner{
+    max-width:1320px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand-logo{ height:46px; width:46px; object-fit:contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,.35)); }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.25; }
+  .brand-name{ font-family:'Fraunces', serif; font-weight:600; font-size:1.05rem; color:var(--cream-50); letter-spacing:.01em; }
+  .brand-sub{ font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-500); font-weight:700; }
+
+  .nav-links{ display:flex; align-items:center; gap:clamp(18px,2.4vw,34px); }
+  .nav-link{
+    position:relative; font-size:.92rem; font-weight:600; color: rgba(251,247,236,.82);
+    padding:8px 2px;
+  }
+  .nav-link::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--gold-500);
+    transform:scaleX(0); transform-origin:left; transition: transform .3s var(--ease);
+    border-radius:2px;
+  }
+  .nav-link:hover, .nav-link.active{ color:var(--cream-50); }
+  .nav-link:hover::after, .nav-link.active::after{ transform:scaleX(1); }
+  .nav-link.nav-cta{
+    background: var(--gold-500); color: var(--navy-950); padding:10px 20px; border-radius:999px; font-weight:700;
+  }
+  .nav-link.nav-cta::after{ display:none; }
+  .nav-link.nav-cta:hover{ background: var(--gold-600); color:var(--navy-950); }
+
+  .nav-toggle{
+    display:none; background:none; border:none; width:40px; height:36px; position:relative; z-index:210;
+  }
+  .nav-toggle span{
+    display:block; position:absolute; left:6px; right:6px; height:2.5px; background:var(--cream-50);
+    border-radius:2px; transition: transform .3s var(--ease), opacity .3s var(--ease), top .3s var(--ease);
+  }
+  .nav-toggle span:nth-child(1){ top:10px; }
+  .nav-toggle span:nth-child(2){ top:18px; }
+  .nav-toggle span:nth-child(3){ top:26px; }
+  .nav-toggle.open span:nth-child(1){ top:18px; transform:rotate(45deg); }
+  .nav-toggle.open span:nth-child(2){ opacity:0; }
+  .nav-toggle.open span:nth-child(3){ top:18px; transform:rotate(-45deg); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100svh; overflow:hidden;
+    background: var(--navy-950);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
+    padding: 150px 24px 90px;
+    color: var(--cream-50);
+  }
+  .hero-glow{
+    position:absolute; top:14%; left:50%; width:min(900px,110vw); height:min(900px,110vw);
+    transform:translateX(-50%);
+    background: radial-gradient(circle, rgba(245,193,21,.24) 0%, rgba(245,193,21,.08) 38%, transparent 70%);
+    filter: blur(10px);
+    animation: pulse 7s ease-in-out infinite alternate;
+    pointer-events:none;
+  }
+  @keyframes pulse{ from{ opacity:.75; transform:translateX(-50%) scale(1); } to{ opacity:1; transform:translateX(-50%) scale(1.06); } }
+  .hero-vignette{
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(4,20,43,.9), transparent 60%);
+    pointer-events:none;
+  }
+  .hero-content{ position:relative; z-index:2; max-width:900px; display:flex; flex-direction:column; align-items:center; }
+  .hero-crest{ width:clamp(110px,16vw,168px); margin-bottom:26px; filter: drop-shadow(0 10px 30px rgba(245,193,21,.25)); }
+  .hero-tags{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px 18px;
+    font-size:.76rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold-500);
+    margin-bottom:20px;
+  }
+  .hero-tags span:not(:last-child)::after{ content:'·'; margin-left:18px; color:rgba(245,193,21,.5); }
+  .hero h1{ font-size:clamp(2.7rem, 6.4vw, 5.4rem); color:var(--cream-50); }
+  .hero-devanagari{
+    font-family:'Noto Serif Devanagari', serif; color:var(--gold-500);
+    font-size:clamp(1.3rem, 3vw, 1.9rem); margin-top:22px; font-weight:600;
+  }
+  .hero-translation{
+    font-style:italic; color:rgba(251,247,236,.72); font-size:1.05rem; margin-top:8px; font-weight:400;
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:42px; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:16px 30px; border-radius:999px;
+    font-weight:700; font-size:.95rem; transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
+    border:1.5px solid transparent;
+  }
+  .btn-primary{ background:var(--gold-500); color:var(--navy-950); box-shadow:0 14px 32px -10px rgba(245,193,21,.55); }
+  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 20px 40px -10px rgba(245,193,21,.65); background:var(--gold-600); }
+  .btn-outline{ border-color: rgba(251,247,236,.38); color:var(--cream-50); }
+  .btn-outline:hover{ border-color:var(--gold-500); color:var(--gold-500); transform:translateY(-3px); }
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:rgba(251,247,236,.55);
+    z-index:2;
+  }
+  .scroll-cue svg{ animation: bob 1.8s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
+
+  /* ---------- THRESHOLD (dawn transition) ---------- */
+  .threshold{
+    position:relative; height:clamp(140px,18vw,210px);
+    background: linear-gradient(var(--navy-950), var(--cream-50));
+  }
+  .threshold::after{
+    content:''; position:absolute; left:50%; bottom:22%; transform:translateX(-50%);
+    width:min(70%,720px); height:1px;
+    background: linear-gradient(90deg, transparent, var(--gold-500) 25%, var(--gold-500) 75%, transparent);
+    box-shadow: 0 0 22px 2px rgba(245,193,21,.55);
+  }
+  .threshold::before{
+    content:''; position:absolute; left:50%; bottom:22%; transform:translate(-50%,-50%);
+    width:9px; height:9px; border-radius:50%;
+    background: var(--gold-500); box-shadow: 0 0 24px 8px rgba(245,193,21,.65);
+  }
+
+  /* ---------- SECTION HEAD (shared) ---------- */
+  .section-head{ max-width:640px; margin:0 auto 56px; text-align:center; }
+  .section-head h2{ font-size:clamp(1.9rem, 3.6vw, 2.7rem); margin-top:14px; }
+  .section-head p{ margin-top:16px; color: var(--ink-500); font-size:1.02rem; }
+  .on-dark .section-head p{ color: rgba(251,247,236,.68); }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in-view{ opacity:1; transform:translateY(0); }
+
+  /* ---------- ABOUT ---------- */
+  .about{ padding: 110px clamp(20px,5vw,64px); background:var(--cream-50); }
+  .about-inner{
+    max-width:1240px; margin:0 auto;
+    display:grid; grid-template-columns: 1fr 1fr; gap:clamp(36px,6vw,90px); align-items:center;
+  }
+  .about-text h2{ font-size:clamp(1.9rem,3.6vw,2.6rem); margin-top:14px; }
+  .about-text p{ margin-top:20px; color:var(--ink-700); font-size:1.04rem; }
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+  .chip{
+    background:var(--cream-100); border:1px solid rgba(7,54,108,.14); color:var(--navy-900);
+    padding:9px 16px; border-radius:999px; font-size:.78rem; font-weight:700; letter-spacing:.04em;
+  }
+  .framed-media{
+    position:relative; background:var(--cream-100); padding:12px; border-radius: calc(var(--radius-lg) + 12px);
+    border:1px solid rgba(7,54,108,.12); box-shadow: var(--shadow-soft);
+  }
+  .framed-media img{
+    width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center 30%; border-radius:var(--radius-lg);
+  }
+  .framed-caption{
+    margin-top:14px; text-align:center; font-size:.85rem; font-style:italic; color:var(--ink-500);
+  }
+
+  /* ---------- PILLARS ---------- */
+  .pillars{ padding:110px clamp(20px,5vw,64px); background:var(--cream-100); }
+  .pillars-grid{
+    max-width:1240px; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:30px;
+  }
+  .pillar-card{
+    background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-soft);
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .pillar-card:hover{ transform:translateY(-8px); box-shadow:var(--shadow-hover); }
+  .pillar-media{ overflow:hidden; aspect-ratio:4/3; }
+  .pillar-media img{ width:100%; height:100%; object-fit:cover; object-position:center 30%; transition: transform .6s var(--ease); }
+  .pillar-card:hover .pillar-media img{ transform:scale(1.06); }
+  .pillar-body{ padding:26px 28px 30px; }
+  .pillar-body h3{ font-size:1.35rem; color:var(--navy-900); }
+  .pillar-body p{ margin-top:10px; color:var(--ink-500); font-size:.95rem; }
+
+  /* ---------- ACHIEVEMENTS (dark band) ---------- */
+  .achievements{ padding:110px clamp(20px,5vw,64px); background:var(--navy-950); color:var(--cream-50); }
+  .achievements-inner{
+    max-width:1240px; margin:0 auto; display:grid; grid-template-columns:.85fr 1.15fr; gap:clamp(36px,6vw,90px); align-items:center;
+  }
+  .achievements-text h2{ color:var(--cream-50); font-size:clamp(1.9rem,3.6vw,2.6rem); margin-top:14px; }
+  .achievements-text p{ margin-top:20px; color:rgba(251,247,236,.72); font-size:1.02rem; }
+  .award-frame{ position:relative; padding:18px; }
+  .award-frame::before,.award-frame::after,
+  .award-corner-b1,.award-corner-b2{ content:''; position:absolute; width:34px; height:34px; border: 2.5px solid var(--gold-500); }
+  .award-frame::before{ top:0; left:0; border-right:none; border-bottom:none; }
+  .award-frame::after{ top:0; right:0; border-left:none; border-bottom:none; }
+  .award-corner-b1{ bottom:0; left:0; border-right:none; border-top:none; }
+  .award-corner-b2{ bottom:0; right:0; border-left:none; border-top:none; }
+  .award-frame img{ width:100%; border-radius:8px; box-shadow:0 30px 70px -20px rgba(0,0,0,.6); }
+  .award-caption{ margin-top:16px; text-align:center; font-size:.85rem; font-style:italic; color:rgba(251,247,236,.55); }
+
+  /* ---------- CAMPUS ---------- */
+  .campus{ padding:110px clamp(20px,5vw,64px); background:var(--cream-50); }
+  .campus-grid{
+    max-width:1240px; margin:0 auto; display:grid;
+    grid-template-columns:repeat(4,1fr); grid-template-rows:repeat(2,minmax(160px,240px)); gap:18px;
+  }
+  .campus-tile{
+    position:relative; border:none; padding:0; border-radius:var(--radius-md); overflow:hidden;
+    box-shadow:var(--shadow-soft); background:none; text-align:left;
+  }
+  .campus-tile:nth-child(1){ grid-column:1/3; grid-row:1/3; }
+  .campus-tile:nth-child(2){ grid-column:3/4; grid-row:1/2; }
+  .campus-tile:nth-child(3){ grid-column:4/5; grid-row:1/2; }
+  .campus-tile:nth-child(4){ grid-column:3/5; grid-row:2/3; }
+  .campus-tile img{
+    width:100%; height:100%; object-fit:cover; transition: transform .6s var(--ease);
+  }
+  .campus-tile:hover img{ transform:scale(1.08); }
+  .campus-tile-label{
+    position:absolute; left:0; right:0; bottom:0; padding:16px 18px;
+    background:linear-gradient(0deg, rgba(4,20,43,.82), transparent);
+    color:var(--cream-50); font-weight:700; font-size:.92rem; letter-spacing:.01em;
+    display:flex; align-items:center; gap:8px;
+  }
+
+  /* ---------- ADMISSIONS ---------- */
+  .admissions{ padding:100px clamp(20px,5vw,64px); background: linear-gradient(135deg, var(--gold-500), var(--gold-600)); text-align:center; }
+  .admissions-inner{ max-width:720px; margin:0 auto; }
+  .admissions h2{ color:var(--navy-950); font-size:clamp(2rem,4vw,2.8rem); }
+  .admissions p{ margin-top:18px; color:var(--navy-900); font-size:1.05rem; }
+  .admissions-actions{ display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:32px; }
+  .btn-navy{ background:var(--navy-950); color:var(--cream-50); box-shadow:0 14px 30px -10px rgba(4,20,43,.5); }
+  .btn-navy:hover{ transform:translateY(-3px); background:var(--navy-850); }
+  .btn-navy-outline{ border-color: rgba(4,20,43,.4); color:var(--navy-950); }
+  .btn-navy-outline:hover{ border-color:var(--navy-950); transform:translateY(-3px); }
+  .admissions-note{ margin-top:22px; font-size:.78rem; color:rgba(4,20,43,.65); }
+
+  /* ---------- FOOTER ---------- */
+  .site-footer{ background:var(--navy-950); color:rgba(251,247,236,.72); padding:80px clamp(20px,5vw,64px) 30px; }
+  .footer-grid{
+    max-width:1240px; margin:0 auto; display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:44px;
+    padding-bottom:50px; border-bottom:1px solid rgba(251,247,236,.14);
+  }
+  .footer-brand{ display:flex; flex-direction:column; gap:14px; max-width:320px; }
+  .footer-brand-top{ display:flex; align-items:center; gap:12px; }
+  .footer-logo{ width:44px; height:44px; object-fit:contain; }
+  .footer-brand-name{ font-family:'Fraunces',serif; font-size:1.15rem; color:var(--cream-50); }
+  .footer-devanagari{ font-family:'Noto Serif Devanagari',serif; color:var(--gold-500); font-size:1rem; }
+  .footer-translation{ font-style:italic; font-size:.85rem; color:rgba(251,247,236,.55); }
+  .footer-col h4{ color:var(--cream-50); font-family:'Fraunces',serif; font-weight:600; font-size:1rem; margin-bottom:18px; }
+  .footer-col ul li{ margin-bottom:12px; }
+  .footer-col a{ font-size:.92rem; color:rgba(251,247,236,.68); transition:color .25s; }
+  .footer-col a:hover{ color:var(--gold-500); }
+  .footer-col p{ font-size:.92rem; color:rgba(251,247,236,.68); margin-bottom:10px; }
+  .social-row{ display:flex; gap:12px; }
+  .social-icon{
+    width:38px; height:38px; border-radius:50%; border:1px solid rgba(251,247,236,.28);
+    display:flex; align-items:center; justify-content:center; font-size:.72rem; font-weight:800;
+    color:rgba(251,247,236,.75); transition: all .25s var(--ease);
+  }
+  .social-icon:hover{ background:var(--gold-500); color:var(--navy-950); border-color:var(--gold-500); transform:translateY(-3px); }
+  .footer-bottom{
+    max-width:1240px; margin:0 auto; padding-top:26px;
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:10px;
+    font-size:.8rem; color:rgba(251,247,236,.5);
+  }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:1000; background:rgba(4,10,20,.92);
+    display:flex; align-items:center; justify-content:center; padding:40px;
+    opacity:0; visibility:hidden; transition: opacity .3s var(--ease);
+  }
+  .lightbox.open{ opacity:1; visibility:visible; }
+  .lightbox figure{ margin:0; max-width:min(1000px,92vw); max-height:88vh; text-align:center; }
+  .lightbox img{ max-width:100%; max-height:76vh; border-radius:10px; box-shadow:0 40px 90px -20px rgba(0,0,0,.7); margin:0 auto; }
+  .lightbox figcaption{ color:var(--cream-50); margin-top:16px; font-size:.92rem; opacity:.8; }
+  .lightbox-close{
+    position:absolute; top:26px; right:32px; background:none; border:none; color:var(--cream-50);
+    font-size:2.2rem; line-height:1; font-weight:300;
+  }
+  .lightbox-close:hover{ color:var(--gold-500); }
+
+  /* ---------- BACK TO TOP ---------- */
+  .back-to-top{
+    position:fixed; right:26px; bottom:26px; width:50px; height:50px; border-radius:50%;
+    background:var(--gold-500); color:var(--navy-950); border:none; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 14px 30px -10px rgba(4,20,43,.5); opacity:0; visibility:hidden; transform:translateY(10px);
+    transition: all .35s var(--ease); z-index:150;
+  }
+  .back-to-top.show{ opacity:1; visibility:visible; transform:translateY(0); }
+  .back-to-top:hover{ background:var(--gold-600); transform:translateY(-4px); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:960px){
+    .nav-links{
+      position:fixed; top:0; right:0; height:100vh; width:min(320px,84vw);
+      background:rgba(4,20,43,.98); backdrop-filter:blur(14px);
+      flex-direction:column; align-items:flex-start; justify-content:center; gap:28px;
+      padding:40px; transform:translateX(100%); transition: transform .4s var(--ease);
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .nav-link{ font-size:1.1rem; }
+    .nav-toggle{ display:block; }
+    .about-inner, .achievements-inner{ grid-template-columns:1fr; }
+    .pillars-grid{ grid-template-columns:1fr; }
+    .campus-grid{ grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(3,200px); }
+    .campus-tile:nth-child(1){ grid-column:1/3; grid-row:1/2; }
+    .campus-tile:nth-child(2){ grid-column:1/2; grid-row:2/3; }
+    .campus-tile:nth-child(3){ grid-column:2/3; grid-row:2/3; }
+    .campus-tile:nth-child(4){ grid-column:1/3; grid-row:3/4; }
+    .footer-grid{ grid-template-columns:1fr 1fr; row-gap:40px; }
+  }
+  @media (max-width:600px){
+    .footer-grid{ grid-template-columns:1fr; }
+    .hero{ padding-top:120px; }
+    .campus-grid{ grid-template-columns:1fr; grid-template-rows:repeat(4,220px); }
+    .campus-tile:nth-child(1),.campus-tile:nth-child(2),.campus-tile:nth-child(3),.campus-tile:nth-child(4){
+      grid-column:1/2;
+    }
+    .campus-tile:nth-child(1){ grid-row:1/2; }
+    .campus-tile:nth-child(2){ grid-row:2/3; }
+    .campus-tile:nth-child(3){ grid-row:3/4; }
+    .campus-tile:nth-child(4){ grid-row:4/5; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+    .reveal{ opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="siteNav">
+    <div class="nav-inner">
+      <a class="brand" href="#top">
+        <img src="logo.png" alt="Balaji Public School crest" class="brand-logo">
+        <span class="brand-text">
+          <span class="brand-name">Balaji Public School</span>
+          <span class="brand-sub">CBSE · New Delhi</span>
+        </span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#school-life" class="nav-link">School Life</a>
+        <a href="#achievements" class="nav-link">Achievements</a>
+        <a href="#campus" class="nav-link">Campus</a>
+        <a href="#admissions" class="nav-link nav-cta">Admissions</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <section class="hero" id="top">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="hero-content">
+        <img src="logo.png" alt="Balaji Public School crest" class="hero-crest">
+        <div class="hero-tags">
+          <span>CBSE Affiliated</span>
+          <span>New Delhi</span>
+          <span>10+2 Co-Educational</span>
+        </div>
+        <h1>Balaji Public School</h1>
+        <p class="hero-devanagari">तमसो मा ज्योतिर्गमय</p>
+        <p class="hero-translation">"Lead us from darkness, into light."</p>
+        <div class="hero-ctas">
+          <a href="#admissions" class="btn btn-primary">Admissions 2026–27</a>
+          <a href="#campus" class="btn btn-outline">Explore the Campus</a>
+        </div>
+      </div>
+      <div class="scroll-cue">
+        Scroll
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+    </section>
+
+    <div class="threshold" aria-hidden="true"></div>
+
+    <section class="about" id="about">
+      <div class="about-inner reveal">
+        <div class="about-text">
+          <span class="eyebrow">Welcome</span>
+          <h2>An education built on light, not just marks.</h2>
+          <p>Balaji Public School is a CBSE-affiliated, co-educational school offering classes through the senior secondary (10+2) level. Our classrooms are built for focus, our courtyards for movement, and our stage for the confidence that comes from standing on it. Progress here shows up in report cards — and in the quiet discipline a child carries home.</p>
+          <div class="chip-row">
+            <span class="chip">CBSE · New Delhi</span>
+            <span class="chip">10+2 · Co-Educational</span>
+            <span class="chip">Academics</span>
+            <span class="chip">Sports & Martial Arts</span>
+            <span class="chip">Arts & Culture</span>
+          </div>
+        </div>
+        <div class="about-media">
+          <div class="framed-media">
+            <img src="front-view.jpeg" alt="Front view of the Balaji Public School academic building" loading="lazy" decoding="async">
+          </div>
+          <p class="framed-caption">Our academic block, on an ordinary Tuesday morning.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pillars" id="school-life">
+      <div class="section-head reveal">
+        <span class="eyebrow" style="justify-content:center;">School Life</span>
+        <h2>Four rooms of the same house.</h2>
+        <p>Academics, sport, culture and the early years — different rooms, one school.</p>
+      </div>
+      <div class="pillars-grid">
+        <article class="pillar-card reveal">
+          <div class="pillar-media"><img src ="student.jpeg" alt="Students writing in a classroom exam" loading="lazy" decoding="async"></div>
+          <div class="pillar-body">
+            <h3>Academics</h3>
+            <p>Focused classrooms, clear fundamentals, and teachers who notice when a concept hasn't landed yet.</p>
+          </div>
+        </article>
+        <article class="pillar-card reveal">
+          <div class="pillar-media"><img src="fight.jpeg" alt="Students in taekwondo uniforms practicing outdoors" loading="lazy" decoding="async"></div>
+          <div class="pillar-body">
+            <h3>Taekwondo & Sport</h3>
+            <p>From the school ground to competition mats — discipline that shows up as a flying kick and as a made-up mind.</p>
+          </div>
+        </article>
+        <article class="pillar-card reveal">
+          <div class="pillar-media"><img src="medal.jpeg" alt="Students in traditional attire with medals at a school cultural event" loading="lazy" decoding="async"></div>
+          <div class="pillar-body">
+            <h3>Culture & Celebrations</h3>
+            <p>Festivals, stage days and school functions that teach a child to belong to something larger than a classroom.</p>
+          </div>
+        </article>
+        <article class="pillar-card reveal">
+          <div class="pillar-media"><img src="fb.jpeg" alt="Two young students playing with a basketball indoors" loading="lazy" decoding="async"></div>
+          <div class="pillar-body">
+            <h3>Early Learners</h3>
+            <p>Play-based mornings for our youngest students — where a basketball is also a lesson in sharing.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="achievements on-dark" id="achievements">
+      <div class="achievements-inner">
+        <div class="achievements-text reveal">
+          <span class="eyebrow">Achievements</span>
+          <h2>Medals are just the visible part.</h2>
+          <p>Behind every medal on this stage is a season of early practices, missed breaks, and a coach who stayed back after the bell. Our students have represented Balaji Public School in taekwondo, athletics and inter-school competitions — and brought a little more gold back to the crest each time.</p>
+        </div>
+        <div class="achievements-media reveal">
+          <div class="award-frame">
+            <span class="award-corner-b1"></span><span class="award-corner-b2"></span>
+            <img src="medal.jpeg" alt="Students holding medals and certificates at a school prize distribution" loading="lazy" decoding="async">
+          </div>
+          <p class="award-caption">Prize distribution — certificates and medals for our young champions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="campus" id="campus">
+      <div class="section-head reveal">
+        <span class="eyebrow" style="justify-content:center;">Campus</span>
+        <h2>Built for a full school day, not just a classroom.</h2>
+        <p>A campus with room to study, to play, and to stand at attention for the flag on a Monday morning.</p>
+      </div>
+      <div class="campus-grid">
+        <button class="campus-tile reveal" data-full="gate.jpeg" data-caption="The main gate — where every school day begins.">
+          <img src="gate.jpeg" alt="Main entrance gate of Balaji Public School" loading="lazy" decoding="async">
+          <span class="campus-tile-label">Main Gate</span>
+        </button>
+        <button class="campus-tile reveal" data-full="front-view.jpeg" data-caption="The academic block, ready to welcome parents on PTM day.">
+          <img src="front-view.jpeg" alt="Academic block building of Balaji Public School" loading="lazy" decoding="async">
+          <span class="campus-tile-label">Academic Block</span>
+        </button>
+        <button class="campus-tile reveal" data-full="frnt.jpg" data-caption="The front façade of the school building.">
+          <img src="frnt.jpg" alt="Front facade of Balaji Public School building" loading="lazy" decoding="async">
+          <span class="campus-tile-label">Front Façade</span>
+        </button>
+        <button class="campus-tile reveal" data-full="grdn.jpeg" data-caption="School grounds, with the national flag flying high.">
+          <img src="grdn.jpeg" alt="School grounds and garden with the Indian flag" loading="lazy" decoding="async">
+          <span class="campus-tile-label">School Grounds</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="admissions" id="admissions">
+      <div class="admissions-inner reveal">
+        <h2>Admissions Open — 2026–27</h2>
+        <p>Seats are limited across pre-primary to senior secondary. Reach out to our admissions desk to start your child's journey with us.</p>
+        <div class="admissions-actions">
+          <a href="mailto:admissions@balajipublicschool.example" class="btn btn-navy">Email Admissions</a>
+          <a href="tel:+91XXXXXXXXXX" class="btn btn-navy-outline">Call the Office</a>
+        </div>
+        <p class="admissions-note">Placeholder contact details shown above — swap in the school's real phone number and email before this goes live.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-top">
+          <img src="logo.png" alt="Balaji Public School crest" class="footer-logo">
+          <span class="footer-brand-name">Balaji Public School</span>
+        </div>
+        <p class="footer-devanagari">तमसो मा ज्योतिर्गमय</p>
+        <p class="footer-translation">Lead us from darkness, into light.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#school-life">School Life</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#campus">Campus</a></li>
+          <li><a href="#admissions">Admissions</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p>[School address line, City, State – PIN]</p>
+        <p>+91 XXXXX XXXXX</p>
+        <p>admissions@balajipublicschool.example</p>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="social-row">
+          <a href="#" class="social-icon" aria-label="Facebook"><img src = "faceb.png" alt = "FB"></a>
+          <a href="#" class="social-icon" aria-label="Instagram"><img src = "insta2.png" alt = "INSTA"></a>
+          <a href="#" class="social-icon" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© <span id="year"></span> Balaji Public School. All rights reserved.</p>
+      <p class="footer-affil">10+2 · Affiliated to C.B.S.E., New Delhi</p>
+    </div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image">×</button>
+    <figure>
+      <img id="lightboxImg" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Nav scroll state
+    const nav = document.getElementById('siteNav');
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      nav.classList.toggle('scrolled', y > 40);
+      backToTop.classList.toggle('show', y > 600);
+    }, { passive:true });
+
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', false);
+      });
+    });
+
+    // Back to top
+    backToTop.addEventListener('click', () => window.scrollTo({ top:0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }));
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15 });
+    revealEls.forEach(el => io.observe(el));
+
+    // Active nav link on scroll
+    const sections = ['about','school-life','achievements','campus','admissions']
+      .map(id => document.getElementById(id)).filter(Boolean);
+    const navAnchors = Array.from(document.querySelectorAll('.nav-link[href^="#"]'));
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const id = entry.target.getAttribute('id');
+        const link = navAnchors.find(a => a.getAttribute('href') === '#' + id);
+        if (!link) return;
+        if (entry.isIntersecting){
+          navAnchors.forEach(a => a.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin:'-45% 0px -50% 0px' });
+    sections.forEach(s => sectionObserver.observe(s));
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCaption = document.getElementById('lightboxCaption');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    function openLightbox(src, caption){
+      lightboxImg.src = src;
+      lightboxImg.alt = caption || '';
+      lightboxCaption.textContent = caption || '';
+      lightbox.classList.add('open');
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox(){
+      lightbox.classList.remove('open');
+      lightbox.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+    document.querySelectorAll('.campus-tile').forEach(tile => {
+      tile.addEventListener('click', () => openLightbox(tile.dataset.full, tile.dataset.caption));
+    });
+    lightboxClose.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  </script>
+</body>
+</html>
