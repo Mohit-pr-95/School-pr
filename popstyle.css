@@ -1,0 +1,49 @@
+:root{
+  color-scheme:light;
+  --navy:#04142B;
+  --gold:#F5C115;
+  --cream:#FBF7EC;
+}
+
+*{ box-sizing:border-box; }
+
+html, body{ width:100%; height:100%; background:transparent; }
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:transparent;
+}
+
+.admission-card{
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:0;
+}
+
+.admission-image{
+  display:block;
+  width:100%;
+  max-height:calc(100vh - 52px);
+  object-fit:contain;
+  border-radius:0;
+}
+
+.popup-close{
+  border:0;
+  border-radius:999px;
+  background:var(--navy);
+  color:var(--cream);
+  padding:9px 20px;
+  font:700 .86rem/1 Arial, sans-serif;
+  cursor:pointer;
+}
+
+.popup-close:hover,
+.popup-close:focus-visible{ background:var(--gold); color:var(--navy); }
+
+.popup-close:focus-visible{ outline:3px solid var(--navy); outline-offset:3px; }
