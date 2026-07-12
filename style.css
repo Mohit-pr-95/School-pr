@@ -459,6 +459,28 @@
   }
   .lightbox-close:hover{ color:var(--gold-500); }
 
+  /* ---------- ADMISSION POPUP ---------- */
+  @keyframes popupFadeIn {
+    from { opacity: 0; transform: scale(0.97); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .admission-popup{
+    position:fixed; inset:0; z-index:1100;
+    display:flex; align-items:center; justify-content:center;
+    padding:24px; background:rgba(4,20,43,.78);
+    backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);
+    animation: popupFadeIn 0.1s ease-out forwards;
+  }
+  .admission-popup[hidden]{
+    display:none !important;
+  }
+  .admission-popup iframe{
+    width:min(92vw,560px); height:min(88svh,640px);
+    border:0; border-radius:0;
+    background:transparent;
+    box-shadow:none;
+  }
+
   /* ---------- BACK TO TOP ---------- */
   .back-to-top{
     position:fixed; right:26px; bottom:26px; width:50px; height:50px; border-radius:50%;
@@ -518,6 +540,8 @@
       gap: 40px 20px;
       column-count: auto;
     }
+    .admission-popup{ padding:16px; }
+    .admission-popup iframe{ width:100%; height:min(84svh,640px); }
   }
 
   @media (prefers-reduced-motion: reduce){
